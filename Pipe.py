@@ -1,5 +1,6 @@
 from Bird import *
 import random
+
 PIPE = pygame.transform.scale2x(pygame.image.load(os.path.join(image_path, 'pipe.png')))
 
 
@@ -32,4 +33,21 @@ class Pipe:
     def draw(self, window):
         window.blit(self.DOWN_PIPE, (self.x, self.top))
         window.blit(self.UP_PIPE, (self.x, self. bottom))
+
+    # Calculate the collision of pipe and bird using mask method of pygame
+    def collision(self, bird):
+        bird_mask = bird.get_mask()
+        up_mask = pygame.mask.from_surface(self.UP_PIPE)
+        down_mask = pygame.mask.from_surface(self.DOWN_PIPE)
+
+        down_offset = (self.x - bird.x, self.top - round(bird.y))
+        up_offset = (self.x - bird.x, self.bottom - round(bird.y))
+
+        b_point = bird_mask.overlap(up_mask, up_offset)
+        t_point = bird_mask.overlap(down_mask, down_offset)
+
+        if t_point or b_point:
+            return True
+
+        return False
 
