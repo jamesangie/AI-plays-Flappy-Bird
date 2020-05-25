@@ -1,6 +1,12 @@
 import pygame
+import os
 
-BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(imgs/bird1.png)), pygame.transform.scale2x(pygame.image.load(imgs/bird2.png)), pygame.transform.scale2x(pygame.image.load(imgs/bird3.png))]
+current_path = os.path.dirname(__file__)
+image_path = os.path.join(current_path, 'imgs')
+
+BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join(image_path, 'bird1.png'))),
+             pygame.transform.scale2x(pygame.image.load(os.path.join(image_path, 'bird2.png'))),
+             pygame.transform.scale2x(pygame.image.load(os.path.join(image_path, 'bird3.png')))]
 
 
 # defining bird object.
@@ -50,7 +56,7 @@ class Bird:
         elif vertical_move < 0:
             vertical_move -= 2
 
-        self.y = self.y + d
+        self.y = self.y + vertical_move
         # check if the bird is higher than the jump position or lower to make the tilting
         # tilt up when the bird is higher than the jump position, tilt down otherwise
         # it is confusing but that was the what original game like
@@ -74,11 +80,11 @@ class Bird:
             if self.img_count < self.ANIMATION_TIME:
                 self.img = self.IMG[0]
             elif self.img_count < self.ANIMATION_TIME * 2:
-                self.img = self.Img[1]
+                self.img = self.IMG[1]
             elif self.img_count < self.ANIMATION_TIME * 3:
-                self.img = self.Img[2]
+                self.img = self.IMG[2]
             elif self.img_count < self.ANIMATION_TIME * 4:
-                self.img = self.Img[0]
+                self.img = self.IMG[0]
                 self.img_count = 0
         # Pygame only allows rotations from the top left conner but that will be really weird
         # so we need this lines of magical code to let the bird rotating from the center
@@ -86,5 +92,6 @@ class Bird:
         new_rect = rotated_image.get_rect(center=self.img.get_rect(topleft=(self.x, self.y)).center)
         window.blit(rotated_image, new_rect.topleft)
 
+    # Use the mask method from pygame to get the perfect collision of objects(birds and pipes)
     def get_mask(self):
-        return pygame.mask.from_furface(self.img)
+        return pygame.mask.from_surface(self.img)
