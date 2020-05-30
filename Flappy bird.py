@@ -58,7 +58,7 @@ def main():
         if pipe[pipe_count].x == -80:
             pipe += [Pipe(500)]
             pipe_count += 1
-
+        # jump the bird when click (that is how we play BABE!)
         if event.type == pygame.MOUSEBUTTONDOWN:
             bird.jump()
 
