@@ -8,7 +8,7 @@ class Base:
     IMG = BASE
 
     def __init__(self):
-        self.y = 700
+        self.y = 750
         self.x_first = 0
         self.x_second = self.x_first + self.WIDTH
 
