@@ -1,5 +1,5 @@
 # AI-plays-Flappy-Bird
-### The project is credit to the Youtuber Tech With Tim's AI Plays Flappy Bird - NEAT Python series. I used different implementation of objects and designing on my ideas other than his. NOT A SINGLE OF LETTER IS COPIED AND PASTED!
+### The project is credit to the Youtuber Tech With Tim's AI Plays Flappy Bird - NEAT Python series. I used different implementation of objects and designing on my ideas other than his. 
 ## 1. Implement the game(DONE)
 ### The game is implemented Objected Oriented. It is easy to play: click mouse to jump the bird going through pipes to survive. 
 ## 2. Create neural network(DONE)
